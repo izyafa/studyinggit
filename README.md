@@ -4,7 +4,7 @@
 <details>
   <summary><b>⚠️ Preview ⚠️</b></summary>
   
-#### Material list
+#### i. Material list
 1. Local Git introduction
 2. Cloud GitHub Introduction
 3. Basic GitHub command
@@ -14,7 +14,7 @@
 7. Handling Merge Conflict
 8. Pull Request & Code Review Workflow
 
-#### Goals
+#### ii. Goals
 To understand...
 - What is version control & how to collaborate.
 - Why we need version control & to collaborate.
@@ -24,7 +24,7 @@ To understand...
   
 </details>
 
-## What is Git?
+## I. What is Git?
 A version control system. Created by LInux Trovalds in 2005, and he after he found someone that can maintain this second project of his, he throws it into Junio Hamano.
 
 It is used for:
@@ -37,7 +37,7 @@ It is used for:
 <details>
 <summary><b> ‼️ Key Concepts ‼️ </b></summary>
 
-#### Key Computer Storage / Data mgmgt. Concepts
+#### 1. Key Computer Storage / Data mgmgt. Concepts
 Before entering,let's assume that...
 | Terms | Means |
 | ----- | ----- |
@@ -50,7 +50,7 @@ Before entering,let's assume that...
 | **Directory** | How the computer tracks data, while a folder is how you interact with it (about the same thing)|
 | **Metadata** | Data about data, like how .jpg have information like camera model, GPS coordinate, file size, etc. |
 
-#### Key Git Concepts
+#### 2. Key Git Concepts
 For understanding Git, one must understand...
 | Terms | Means |
 | ----- | ----- |
@@ -75,10 +75,10 @@ For understanding Git, one must understand...
 - **You can revert back** to any previous commit
 - Git **does not store a separate copy of every file in every commit** (otherwise it will loads up your storage in no time), but keeps track of changes made in each commit
 
-## Git Setup
+## II. Git Setup
 To get started, one must install it first as it is not come by your system by default probably.
 
-### Git Install
+### 1. Git Install
   
 <details>
   <summary>
@@ -127,7 +127,7 @@ To get started, one must install it first as it is not come by your system by de
   
 </details>
 
-#### Verifying Instalation
+### 2. Verifying Instalation
 Open GitBash if you're on Windows or Terminal if you're on Linux/MacOS, check that Git works by opening your terminal) by running:
 
 > [!TIP] 
@@ -135,7 +135,7 @@ Open GitBash if you're on Windows or Terminal if you're on Linux/MacOS, check th
 
 and it should return your git version e.g. ```git version 2.5x.x```
 
-#### Add Git to PATH after installation
+### 3. Add Git to PATH after installation
 
 <details>
   <summary>
@@ -170,7 +170,7 @@ and it should return your git version e.g. ```git version 2.5x.x```
 After adding Git to your PATH, open a new terminal window and run ```git --version``` to check that it works **everywhere**.
 </details>
 
-#### Updating or Uninstalling Git
+### 4. Updating or Uninstalling Git
 By using package manager
 - ```brew update git```
 - ```sudo apt-get upgrade git``` or any other package manager...
@@ -202,3 +202,29 @@ By using package manager
   - Download the latest version from the official website if needed.
 
 </details>
+
+### 5. Configure Git
+
+>[!Warning]
+> - System (all users): ```git config --system```
+> - Global (current user): ```git config --global```
+> - Local (current repo): ```git config --local```
+
+#### 5.1. Name
+Your name will be attached to your commits. Set it with:
+```
+git config --global user.name "your-name"
+```
+
+#### 5.2. Email
+Your email is also attached to your commits. Set it with:
+```
+git config --global user.email "you@example.com"
+```
+
+#### 5.3. Branch Name
+Set the default branch name for new repositories (for example, ```main``` instead of ```master```):
+```git config --global init.defaultBranch main```
+
+>[!TIP]
+>run ```git --help``` for further commands
