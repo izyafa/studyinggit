@@ -25,6 +25,15 @@ To understand...
 (the materials will be heavily referenced from [w3schools.com](https://www.w3schools.com/git/)
 </details>
 
+<details>
+  <summary>
+    <h1>
+      <b>
+        Introduction
+      </b>
+    </h1>
+  </summary>
+
 ## I. What is Git?
 A version control system. Created by LInux Trovalds in 2005, and he after he found someone that can maintain this second project of his, he throws it into Junio Hamano.
 
@@ -32,11 +41,6 @@ It is used for:
 - Tracking code changes
 - Tracking who made changes
 - Coding collaboration
-
-
-
-<details>
-<summary><b> ‼️ Key Concepts ‼️ </b></summary>
 
 #### 1. Key Computer Storage / Data mgmgt. Concepts
 Before entering,let's assume that...
@@ -64,8 +68,6 @@ For understanding Git, one must understand...
 | **Pull** | Get the latest changes from a remote repository |
 | **Push** | Send your changes to a remote repository |
 
-</details>
-
 #### Working with Git
 - *Initialize* or running Git for the first time on a folder, making the folder a **Repository**
 - Git now creates a hidden folder to keep track of changes in that folder ```(e.g. /Folder/.git/)```. As if it is your project's metadata.
@@ -76,10 +78,11 @@ For understanding Git, one must understand...
 - **You can revert back** to any previous commit
 - Git **does not store a separate copy of every file in every commit** (otherwise it will loads up your storage in no time), but keeps track of changes made in each commit
 
+</details>
+
+
 <details>
-  <summary>
-    <b>Git Setup (Install -> Configure) </b>
-  </summary>
+<summary><h1><b>Git Setup (Install -> Configure)</b></h1></summary>
 
 ## II. Git Setup
 To get started, one must install it first as it is not come by your system by default probably.
@@ -241,7 +244,7 @@ git config --global init.defaultBranch main
 
 <details>
   <summary>
-    <b>Git Init -> Stash</b>
+    <h1><b>Git Init -> Stash</b></h1>
   </summary>
 
 ## III. Get Started with Git
@@ -370,13 +373,13 @@ Here are some common use cases:
 
 <details>
   <summary>
-    <b>History -> Merging</b>
+    <h1><b>History -> Merging</b></h1>
   </summary>
 
 
 ## III. History, Branching, Merging
 
-### 6 Git History
+### 1. Git History
 Git keeps a detailed record of every change made to your project. This is useful for tracking progress, finding bugs, and understanding your project's evolution.
 
 >[!TIP]
@@ -386,19 +389,19 @@ Git keeps a detailed record of every change made to your project. This is useful
 > - ```git diff``` - See unstaged changes
 > - ```git diff --staged``` - See staged changes
 
-#### 6.1. Compare Two Commits
+#### 1.1. Compare Two Commits
 See what changed between any two commits
 ```
 git diff <commit1> <commit2>
 ```
 
-#### 6.2. Show a Branch Graph
+#### 1.2. Show a Branch Graph
 See a simple ASCII graph of your branch history (great for visualizing merges)
 ```
 git log --graph --oneline
 ```
 
-#### Git Branch
+### 2. Git Branch
 In Git, a ```branch``` is like a separate workspace where you can make changes and try new ideas without affecting the main project. Think of it as a "parallel universe" for your code.
 
 >[!WARNING]
@@ -407,18 +410,91 @@ In Git, a ```branch``` is like a separate workspace where you can make changes a
 > - Fixing a bug
 > - Experimenting with ideas
 
-To list how many branches do your project has
+#### 2.1. To list how many branches do your project has
 ```
 git branch
 ```
 By default it should only be ```main``` or ```master``` with the ```*``` which means you are currenlty on that ```branch```
 
-Create new ```branch```:
+#### 2.2. Create new Branch:
 ```
 git branch <new-branch-name>
 ```
 
+#### 2.3. Switching between Branches
+```
+git checkout <switch-to-this-branch>
+```
 
+#### 2.4. When you're done with a branch (either feature finished or cancelled), to delete it:
+```
+git branch -d <branch-name>
+```
+
+>[!TIP]
+>Best Practices for Working with Branches
+> - Use clear, descriptive branch names (like ```feature/login-page``` or ```bugfix/header-crash```).
+> - Keep each branch focused on a single purpose or feature.
+> - Regularly merge changes from the main branch to keep your branch up-to-date.
+> - Delete branches that are no longer needed to keep your repository clean.
+
+#### 2.5. Practical Examples
+- Rename a branch: ```git branch -m <old-name> <new-name>```
+- List all branches: ```git branch```
+- Switch branches: ```git checkout <branch-name>``` or ```git switch <branch-name>```
+- Delete a branch (not merged): ```git branch -D <branch-name>```
+- See which branch you're on: ```git status```
+
+>[!WARNING]
+>When deleting a branch, make sure it's merged first. otherwise Git will prevent it. To force delete, run
+>```
+>git branch -D <branch-name>
+>```
+
+### 3. Git Branch Merge
+Merging in Git means combining the changes from one branch into another.
+
+This is how you bring your work together after working separately on different features or bug fixes.
+
+>[!TIP]
+>Common ```git merge``` options
+> - ```git merge``` - Merge a branch into your current branch
+> - ```git merge --no-ff``` - Always create a merge commit
+> - ```git merge --squash``` - Combine changes into a single commit
+> - ```git merge --abort``` - Abort a merge in progress
+
+#### 3.1. Non-Fast-Forward Merge
+
+By default, if your branch can be merged with a fast-forward (no new commits on the base), Git just moves the branch pointer forward.
+```
+git merge --no-ff <branch-name>
+```
+
+#### 3.2. Squash Merge
+
+If you want to combine all the changes from a branch into a single commit (instead of keeping every commit), use 
+```
+git merge --squash <branchname>.
+```
+This is useful for cleaning up commit history before merging.
+
+>[!WARNING]
+>If you run into trouble during a merge (like a conflict you don't want to resolve), you can cancel the merge and go back to how things were before with ```git merge --abort```.
+
+### IV. Merge Conflict
+
+A merge conflict happens when changes in two branches touch the same part of a file and Git doesn't know which version to keep.
+
+You need to open the file, look for lines like ```<<<<<<< HEAD``` and ```=======```, and decide what the final version should be.
+
+Then, stage and commit your changes.
+
+>[!TIP]
+> - If you want to cancel a merge, use ```git merge --abort```.
+> - Always commit or stash your changes before starting a merge.
+> - Read the conflict markers carefully and remove them after you've resolved the issue.
+> - Use git status to see what files need your attention.
+> - If you're unsure, ask a teammate or look up the error message.
 
 
 </details>
