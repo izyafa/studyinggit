@@ -21,7 +21,8 @@ To understand...
 - The terms inside version control
 - How to use Git
 - How to use GitHub
-  
+
+(the materials will be heavily referenced from [w3schools.com](https://www.w3schools.com/git/)
 </details>
 
 ## I. What is Git?
@@ -224,7 +225,26 @@ git config --global user.email "you@example.com"
 
 #### 5.3. Branch Name
 Set the default branch name for new repositories (for example, ```main``` instead of ```master```):
-```git config --global init.defaultBranch main```
+```
+git config --global init.defaultBranch main
+```
 
 >[!TIP]
 >run ```git --help``` for further commands
+
+## III. Get Started with Git
+Create a project folder, navigate to the folder, and initialize a Git repository.
+
+### 1. Creating Git Folder
+make the folder (creates a new directory)
+```
+mkdir myproject
+```
+navigate to the folder (changes the current working directory)
+```
+cd myproject
+```
+Initialize Git
+```
+git init
+```
