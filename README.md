@@ -76,6 +76,11 @@ For understanding Git, one must understand...
 - **You can revert back** to any previous commit
 - Git **does not store a separate copy of every file in every commit** (otherwise it will loads up your storage in no time), but keeps track of changes made in each commit
 
+<details>
+  <summary>
+    <b>Git Setup (Install -> Configure) </b>
+  </summary>
+
 ## II. Git Setup
 To get started, one must install it first as it is not come by your system by default probably.
 
@@ -232,6 +237,13 @@ git config --global init.defaultBranch main
 >[!TIP]
 >run ```git --help``` for further commands
 
+</details>
+
+<details>
+  <summary>
+    <b>Git Init -> Stash</b>
+  </summary>
+
 ## III. Get Started with Git
 Create a project folder, navigate to the folder, and initialize a Git repository.
 
@@ -353,3 +365,60 @@ Here are some common use cases:
 > - **Tracked files** (both staged and unstaged) are stashed by default.
 > - **Untracked files** (new files not yet added to Git) are not stashed by default.
 > - To stash untracked files too, use ```git stash -u``` (or ``--include-untracked```).
+
+</details>
+
+<details>
+  <summary>
+    <b>History -> Merging</b>
+  </summary>
+
+
+## III. History, Branching, Merging
+
+### 6 Git History
+Git keeps a detailed record of every change made to your project. This is useful for tracking progress, finding bugs, and understanding your project's evolution.
+
+>[!TIP]
+> - ```git log``` - Show full commit history
+> - ```git log --oneline``` - Show a summary of commits
+> - ```git show <commit>``` - Show details of a specific commit
+> - ```git diff``` - See unstaged changes
+> - ```git diff --staged``` - See staged changes
+
+#### 6.1. Compare Two Commits
+See what changed between any two commits
+```
+git diff <commit1> <commit2>
+```
+
+#### 6.2. Show a Branch Graph
+See a simple ASCII graph of your branch history (great for visualizing merges)
+```
+git log --graph --oneline
+```
+
+#### Git Branch
+In Git, a ```branch``` is like a separate workspace where you can make changes and try new ideas without affecting the main project. Think of it as a "parallel universe" for your code.
+
+>[!WARNING]
+>Common reasons to create a branch
+> - Developing a new feature
+> - Fixing a bug
+> - Experimenting with ideas
+
+To list how many branches do your project has
+```
+git branch
+```
+By default it should only be ```main``` or ```master``` with the ```*``` which means you are currenlty on that ```branch```
+
+Create new ```branch```:
+```
+git branch <new-branch-name>
+```
+
+
+
+
+</details>
