@@ -71,7 +71,7 @@ For understanding Git, one must understand...
 - Git now creates a hidden folder to keep track of changes in that folder ```(e.g. /Folder/.git/)```. As if it is your project's metadata.
 - When a file is changed, added or deleted, it is considered **modified**
 - You select the modified files you want to **Stage**
-- the **Stagesd files are **Committed**, which prompts Git to store a **permanent** snapshot of the files
+- the **Staged** files are **Committed**, which prompts Git to store a **permanent** snapshot of the files
 - Git allows you to see the full history of every commit
 - **You can revert back** to any previous commit
 - Git **does not store a separate copy of every file in every commit** (otherwise it will loads up your storage in no time), but keeps track of changes made in each commit
@@ -236,15 +236,81 @@ git config --global init.defaultBranch main
 Create a project folder, navigate to the folder, and initialize a Git repository.
 
 ### 1. Creating Git Folder
-make the folder (creates a new directory)
+#### 1.1. make the folder (creates a new directory)
 ```
 mkdir myproject
 ```
-navigate to the folder (changes the current working directory)
+#### 1.2.navigate to the folder (changes the current working directory)
 ```
 cd myproject
 ```
-Initialize Git
+#### 1.3. Initialize Git
 ```
 git init
 ```
+After running that there will be hidden ```.git``` folder inside that repository.
+
+#### 1.4. New File
+Make any file, e.g. ```test.txt``` file and save it into the repository. Example by running this in terminal 
+```
+echo "Hi, i'm testing Git" > test.txt
+```
+#### 1.5. Check file status
+ - To see which files are in your project folder, use the ```ls``` command.
+ - To see which files are tracked, use ```git status``` command.
+
+>[!TIP]
+>**Untracked file** is any file in your project that Git is not yet tracking. You've created or copied into the folder, but haven't *told* Git to watch.
+>**Tracked file** is a file that Git is watching for changes. To make a file tracked, you need to add it to the staging area.
+
+#### 1.6. Stage a File
+- To add a file to the staging area, use ```git add <file>```:
+```
+git add test.txt
+```
+Now test.txt is staged. You can check what is staged with ```git status```.
+
+- To remove file from the staging area (unstage it) run:
+```
+git restore --staged test.txt
+```
+Now ```test.txt``` is no longer staged. You can also use ```git reset HEAD index.html``` for the same effect.
+
+#### 1.7 Commit
+>[!TIP]
+> - ```git commit -m "message"``` - Commit staged changes with a message
+> - ```git commit -a -m "message"``` - Commit all tracked changes (skip staging)
+> - ```git log``` - See commit history
+
+To save your staged changes, use:
+```
+git commit -m "your message"
+```
+
+You can skip the staging step for already tracked files with 
+```
+git commit -a -m "message".
+```
+This commits all modified and deleted files, but not new/untracked files.
+
+>[!WARNING]
+>Skipping the staging step can make you include unwanted changes. Use with care.
+>```git commit -a``` does not work for new/untracked files. You must use ```git add <file>``` first for new files.
+
+If you just type ```git commit``` (no ```-m```), your default editor will open so you can write a detailed, multi-line message.
+
+>[!TIP]
+> Best Practice for Commit Message:
+> - Keep the first line short (50 characters or less).
+> - Use the imperative mood (e.g., "Add feature" not "Added feature").
+> - Leave a blank line after the summary, then add more details if needed.
+> - Describe why the change was made, not just what changed.
+
+#### 1.8 Commit Hitory
+To view the history of commits for a repository, you can use:
+```
+git log
+```
+
+For a shorter view, use ```git log --oneline```
+To see which files changed in each commit, use ```git log --stat```
