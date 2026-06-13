@@ -250,12 +250,12 @@ git init
 ```
 After running that there will be hidden ```.git``` folder inside that repository.
 
-#### 1.4. New File
+### 2. New File
 Make any file, e.g. ```test.txt``` file and save it into the repository. Example by running this in terminal 
 ```
 echo "Hi, i'm testing Git" > test.txt
 ```
-#### 1.5. Check file status
+#### 2.1. Check file status
  - To see which files are in your project folder, use the ```ls``` command.
  - To see which files are tracked, use ```git status``` command.
 
@@ -263,7 +263,7 @@ echo "Hi, i'm testing Git" > test.txt
 >**Untracked file** is any file in your project that Git is not yet tracking. You've created or copied into the folder, but haven't *told* Git to watch.
 >**Tracked file** is a file that Git is watching for changes. To make a file tracked, you need to add it to the staging area.
 
-#### 1.6. Stage a File
+#### 2.2. Stage a File
 - To add a file to the staging area, use ```git add <file>```:
 ```
 git add test.txt
@@ -276,7 +276,7 @@ git restore --staged test.txt
 ```
 Now ```test.txt``` is no longer staged. You can also use ```git reset HEAD index.html``` for the same effect.
 
-#### 1.7 Commit
+### 3. Commit
 >[!TIP]
 > - ```git commit -m "message"``` - Commit staged changes with a message
 > - ```git commit -a -m "message"``` - Commit all tracked changes (skip staging)
@@ -306,7 +306,7 @@ If you just type ```git commit``` (no ```-m```), your default editor will open s
 > - Leave a blank line after the summary, then add more details if needed.
 > - Describe why the change was made, not just what changed.
 
-#### 1.8 Commit Hitory
+#### 3.1. Commit Hitory
 To view the history of commits for a repository, you can use:
 ```
 git log
@@ -314,3 +314,42 @@ git log
 
 For a shorter view, use ```git log --oneline```
 To see which files changed in each commit, use ```git log --stat```
+
+### 4. Tag
+A **tag** in Git is like a label or bookmark for a specific commit.
+Tags are most often used to mark important points in your project history, like releases (**v1.0** or **v2.0**).
+
+>[!TIP]
+> - ```git tag <tagname>``` - Create a lightweight tag
+> - ```git tag -a <tagname>``` -m "message" - Create an annotated tag
+> - ```git tag <tagname> <commit-hash>``` - Tag a specific commit
+> - ```git tag``` - List tags
+> - ```git show <tagname>``` - Show tag details
+
+Tags are a simple and reliable way to keep track of versions and share them with your team or users.
+
+Some common tag types include:
+- **Releases**: Tags let you mark when your project is ready for release, so you (and others) can always find that exact version later.
+- **Milestones**: Use tags to highlight major milestones, like when a big feature is finished or a bug is fixed.
+- **Deployment**: Many deployment tools use tags to know which version of your code to deploy.
+- **Hotfixes**: If you need to fix an old version, tags make it easy to check out and patch the right code.
+
+>[!TIP]
+> - Use tags to mark releases, major milestones, or stable points in your project.
+> - Always use annotated tags (with -a -m) for anything public or shared.
+> - Create tags after passing all tests or before deploying/releasing code.
+
+### 5. Stash
+Sometimes you need to quickly switch tasks or fix a bug, but you're not ready to commit your work.
+```git stash``` lets you save your uncommitted changes and return to a clean working directory.
+You can come back and restore your changes later.
+
+Here are some common use cases:
+- **Switch branches safely**: Save your work before changing branches.
+- **Handle emergencies**: Stash your work to fix something urgent, then restore it.
+- Keep your **work-in-progress safe**: Avoid messy commits or losing changes.
+
+>[!TIP]
+> - **Tracked files** (both staged and unstaged) are stashed by default.
+> - **Untracked files** (new files not yet added to Git) are not stashed by default.
+> - To stash untracked files too, use ```git stash -u``` (or ``--include-untracked```).
