@@ -496,5 +496,83 @@ Then, stage and commit your changes.
 > - Use git status to see what files need your attention.
 > - If you're unsure, ask a teammate or look up the error message.
 
+Case example.
+
+Try recreating a Merge Conflict:
+
+1. Go to ```main``` branch and change line 1 of a file:
+```
+git checkout main
+echo "Cookie Monster loves cookies" > test.txt
+git add test.txt
+git commit -m "Main branch change"
+```
+
+2. Go to ```try``` branch and change line 1 of that exact same file differently:
+```
+git checkout try
+echo "Elmo loves cookies" > test.txt
+git add test.txt
+git commit -m "Try branch change"
+```
+
+3. Trigger the conflict:
+
+```
+git merge main
+```
+
+That command pull changes from the ```main``` branch and merge it into the ```try``` branch, which results into a merge conflict.
+
+How to resolve that Merge Conflict:
+
+1. Open the file in which the merge conlflict happens via text editor
+
+```
+vim test.txt
+```
+
+| main | try |
+| ----- | ----- |
+| "Cookie Monster loves cookies" | "Elmo loves cookies" |
+
+Assume you want to use the line from the ```main``` branch anyway. 
+
+2. Delete the ```try``` branch text
+3. Delete all of Git's markers (```<<<<<<```, ```=======```, ```>>>>>>```)
+4. Save and close the file
+
+5. Stage the resolved file
+
+(still inside ```try``` branch)
+
+```
+git add test.txt
+```
+
+6. Commit the merge with message:
+
+```
+git commit -m "Merge branch 'main' into 'try' - resolved conflict keeping main version"
+```
+
+>Since the assumption is to completely throw away the ```try``` version and use the ```main``` version for this specific file,
+>You can actually skip the text editor entirely using Git's checkout tool:
+>
+>```
+>git checkout --theirs text.txt
+>```
+>*Tell Git to checkout the file exactly as it exists on the main branch*
+>
+>
+>```
+>git add test.txt
+>git commit -m "Resolved conflict using main version"
+>```
+>*Done!*
+
+>[!TIP]
+>In a merge, ```--ours``` refers to the branch you are currently on ```try```,
+>and ```--theirs``` refers to the branch being merged in ```main```.
 
 </details>
